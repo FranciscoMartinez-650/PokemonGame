@@ -4,7 +4,7 @@
     class="hidden-pokemon" alt="Pokemon" />
 
     <img  v-if="showPokemon" :src="imgSrc" 
-    class="fade-in" alt="Pokemon" />-->
+    class="fade-in" alt="Pokemon" />
 </div>
     
 </template>
@@ -37,7 +37,7 @@ export default ({
 img {
     height: 200px;
     position: absolute;
-    right: 37%;
+    right: 42%;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

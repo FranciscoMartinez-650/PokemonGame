@@ -7,6 +7,8 @@
 <script>
 import  PokemonOption from '@/components/PokemonOption'
 import  PokemonPictures from '@/components/PokemonPictures'
+import getPokemonOptions from '@/helpers/getPokemonOptions'
+console.log(getPokemonOptions)
 export default ({
     components: {PokemonOption,PokemonPictures}
 })
