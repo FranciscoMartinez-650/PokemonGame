@@ -7,14 +7,20 @@
 
     <PokemonOptions :pokemons="pokemonArr"
     @selection-pokemon="checkAnswer" />
-
-    <template v-if="showAnswer">
+    
+    
+    <!--<ContadorVidas/>-->
+    <template id="template" v-if="showAnswer">
         <h2 class="fade-in"> {{message}}</h2>
         <button @click="newGame">
                 Nuevo Juego
         </button>
+       
     </template>
+    <h4>Vidas: <p>{{vidas}}</p></h4>
+    <h4>Intentos <p>{{intentos}}</p></h4>
 </div>
+      
 </template>
 
 <script>
@@ -23,14 +29,18 @@ import  PokemonPicture from '@/components/PokemonPictures'
 import getPokemonOptions from '@/helpers/getPokemonOptions'
 console.log(getPokemonOptions)
 export default ({
-    components: {PokemonOptions,PokemonPicture},
+    components: {
+        PokemonOptions,
+        PokemonPicture},
     data(){
         return{
             pokemonArr: [],
             pokemon: null,
             showPokemon: false,
             showAnswer: false,
-            message: ''
+            message: '',
+            vidas: 3,
+            intentos: 0
         }
     },
     methods: {
@@ -43,13 +53,28 @@ export default ({
         checkAnswer(selectedId){
             this.showPokemon = true
             this.showAnswer = true
-            if( selectedId === this.pokemon.id ) {
+            if( selectedId === this.pokemon.id) {
                 this.message = `Correcto, ${ this.pokemon.name }`
+                this.intentos++
             } else {
                 this.message = `Oops, era ${ this.pokemon.name }`
+                this.intentos++;
+                this.vidas--
+            }
+            if(this.intentos == 6 && this.vidas>0){
+                alert("Has Ganado, juego terminado")
+                setInterval(location.reload())
+            }
+            if(this.vidas == 1){
+                alert("Cuidado solo te queda una vida")
+            }
+            if(this.vidas == 0){
+                alert("GAME OVER, se reiniciara tu vida")
+                setInterval(location.reload())
             }
         },
         newGame(){
+         
             this.showPokemon = false
             this.showAnswer = false
             this.pokemonArr = []
@@ -63,5 +88,7 @@ export default ({
 })
 </script>
 <style>
-
+    #templete{
+        margin-top: 1300px;
+    }
 </style>
