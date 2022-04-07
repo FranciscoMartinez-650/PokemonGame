@@ -4,8 +4,7 @@
     <span>puntaje: {{score}}</span>
     <button id="empezar" @click="empezar">Empezar de Nuevo</button>
     </h1>
-
-<h1 v-if="!pokemon">Espere por favor</h1>
+<h1 v-if="!pokemon">Esperando...!</h1>
 <div v-else>
     <h1 v-if="vidas!= 0">¿Quien es ese pokemon?</h1>
     <PokemonPicture :pokemon-id="pokemon.id" 
@@ -77,6 +76,8 @@ export default ({
             if(this.vidas == 0){
             this.showPokemon = false
             this.showAnswer = false
+            this.pokemonArr = []
+            this.pokemon = null
             }
             
         },
